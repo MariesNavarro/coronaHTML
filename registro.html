@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="google" content="notranslate">
+    <title>Registro | Gana en la Feria Corona</title>
+    <link rel="canonical" href="https://ganaenlaferiacorona.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0000, minimum-scale=1.0000, maximum-scale=1.0000, user-scalable=yes">
+    <meta name="description" content="Gana en la feria con Corona México. Registra tu ticket ó factura. ¡Todos los días puedes participar! Con Corona México haz que tu baño sea el que siempre soñaste.">
+    <meta name="keywords" content="Corona, México, Sanitarios, Sanimex, Promoción">
+    <meta name="author" content="OET Capital">
+    <meta property="og:title" content="Gana en la Feria Corona | Corona México">
+    <meta property="og:url" content="https://ganaenlaferiacorona.com">
+    <meta property="og:site_name" content="Gana en la Feria Corona | Corona México">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Gana en la feria con Corona México. Registra tu ticket ó factura. ¡Todos los días puedes participar! Con Corona México haz que tu baño sea el que siempre soñaste.">
+    <meta property="og:image" content=“img/media/social_thumbnail_fb.jpg”>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="650">
+    <meta name="twitter:card" content=“summary_large_image”>
+    <meta name="twitter:site" content="https://ganaenlaferiacorona.com">
+    <meta name="twitter:title" content="Gana en la Feria Corona | Corona México">
+    <meta name="twitter:description" content="Gana en la feria con Corona México. Registra tu ticket ó factura. ¡Todos los días puedes participar! Con Corona México haz que tu baño sea el que siempre soñaste.">
+    <meta name="twitter:image" content="img/media/social_thumbnail_tw.jpg">
+    <meta name="twitter:image:width" content="750">
+    <meta name="twitter:image:height" content="392">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/fav/favicon-16x16.png">
+    <link rel="manifest" href="img/fav/site.webmanifest">
+    <link rel="mask-icon" href="img/fav/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="img/fav/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/master.css">
+  </head>
+  <body class="bodyRegistro">
+    <nav class="displayFlex">
+      <a href="index.html" class="blue"></a>
+    </nav>
+    <section id="registro">
+      <header>
+        <h2><span>Por favor ingresa los siguientes datos:</span></h2>
+        <p>Registro Válido sólo día de la compra*</p>
+        <span></span>
+      </header>
+      <div id="form" class="displayFlex">
+        <div class="leftWr" class="displayFlex">
+          <!-- Seleccion sucursal -->
+          <div class="qstWr">
+              <label for="sucursal">Sucursal</label>
+              <select name="sucursal" id="sucursal">
+                <option value="0">Selecciona la Sucursal de Compra</option>
+                <option value="sucursal1">sucursal 1</option>
+                <option value="sucursal2">sucursal 2</option>
+                <option value="sucursal3">sucursal 3</option>
+              </select>
+              <p class="alerta"></p>
+            </div>
+            <!-- Ingresa monto -->
+            <div class="qstWr">
+              <label for="monto">Monto</label>
+              <input type="text" name="monto" placeholder="Ingresa únicamente de Compras Corona" required>
+              <p class="alerta"></p>
+            </div>
+            <!-- Ingresa ticket ID -->
+            <div class="qstWr">
+              <label for="ticketid">Ticket ID</label>
+              <input type="text" name="ticketid" placeholder="Ingresa el ID de Ticket ó Factura" required>
+              <p class="alerta"></p>
+            </div>
+            <!-- Ingresa fecha y hora -->
+            <div class="qstWr">
+              <label for="fechahora">Fecha y Hora de Compra*</label>
+              <input type="text" name="fechahora" placeholder="Día/Mes/Año | Hora:Minutos" required>
+              <p class="alerta"></p>
+            </div>
+        </div>
+        <div class="rightWr" class="displayFlex">
+          <!-- Nombre -->
+          <div class="qstWr">
+            <label for="nombre">Tu Nombre</label>
+            <input type="text" name="nombre" placeholder="Ingresa Nombre" required>
+            <p class="alerta"></p>
+          </div>
+          <!-- Correo -->
+          <div class="qstWr">
+            <label for="correo">Tu Correo</label>
+            <input type="text" name="correo" placeholder="Ingresa un Correo" required>
+            <p class="alerta"></p>
+          </div>
+          <!-- Teléfono -->
+          <div class="qstWr">
+            <label for="telefono">Tu Teléfono</label>
+            <input type="text" name="telefono" placeholder="(55)-5555555" required>
+            <p class="alerta"></p>
+          </div>
+          <!-- CP -->
+          <div class="qstWr">
+            <label for="cp">Tu Código Postal</label>
+            <input type="text" name="cp" placeholder="11000" required>
+            <p class="alerta"></p>
+          </div>
+        </div>
+      </div>
+      <div id="extraForm" class="displayFlex">
+        <div class="leftWr">
+          <p class="refTicketTx">¿No encuentras algún dato en el <b>ticket</b><br> ó <b>factura</b>? <a href="#">Ver Referencias</a></p>
+        </div>
+        <div class="rightWr displayFlex">
+          <div class="btnPart2 displayFlex">
+            <p>Dale <b>Like</b></p>
+            <a role="button" class="btns btnFace">
+              <div class="color trans5"></div>
+              <p>Corona México <span class="icon likeIc"></span></p>
+            </a>
+          </div>
+          <div class="btnPart2 displayFlex">
+            <p>Sube tu <b>Ticket ó Factura</b></p>
+            <a role="button" class="btns btnSube">
+              <div class="color trans5"></div>
+              <p>Sube <span class="icon camIc"></span></p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="enviar">
+        <div class="rightWr">
+            <div class="displayFlex">
+              <input class="checkSend" type="checkbox">
+              <p>Acepto <a href="#">Términos y Condiciones</a></p>
+            </div>
+            <a role="button" class="btns btnEnviar">
+              <div class="color trans5"></div>
+              <p>Enviar</p>
+            </a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
