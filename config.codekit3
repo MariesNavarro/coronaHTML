@@ -9,6 +9,14 @@
 	],
 "creatorBuild": "31927",
 "files": {
+	"/.gitattributes": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/.gitattributes",
+		"oF": 0
+		},
 	"/404.html": {
 		"cB": 0,
 		"ft": 8192,
@@ -519,7 +527,7 @@
 	},
 "projectAttributes": {
 	"creationDate": 601518555.57097006,
-	"displayValue": "coronaPromoHTML",
+	"displayValue": "coronaHTML",
 	"displayValueWasSetByUser": 0,
 	"iconImageName": "/img/fav/apple-touch-icon.png",
 	"iconImageWasSetByUser": 0
