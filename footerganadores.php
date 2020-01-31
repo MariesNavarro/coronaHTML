@@ -1,5 +1,4 @@
 <footer class="displayFlex">
-	<p><a href="ganadores.php" class="trans5">Ver Ganadores del Día</a> <span> | <span></p>
 	<p><a href="legales/Terminos_Condiciones_Promocion.pdf" class="trans5" target="_blank"> Ver Términos y Condiciones</a> | <a role="button" onclick="popFoot('open')" class="trans5" style="text-decoration:underline">Ayuda</a></p>
 	<p>Corona México © 2020</p>
 </footer>

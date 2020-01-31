@@ -34,4 +34,4 @@
 	});
 </script>
 
-<?php include 'footer.php';?>
+<?php include 'footerganadores.php';?>
