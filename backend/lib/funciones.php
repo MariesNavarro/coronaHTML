@@ -434,10 +434,10 @@
 			$instruc     = "";
 
 			switch ($tipo) {
-				case 'CINE': $instruc  = "Para hacer válido tu premio acude al Cinépolis VIP de tu preferencia con tu código. Válido de Lunes a Domingo.";  break;
-				case 'NETF': $instruc  = "Para aclarar dudas sobre cómo hacer válido tu premio, ingresa a la página de Netflix <a href='https://www.netflix.com/mx/'>aquí</a>";  break;
-				case 'SPOT': $instruc  = "Para aclarar dudas sobre cómo hacer válido tu premio, ingresa a la página de Spotify <a href='https://www.spotify.com/mx/'>aquí</a>";  break;
-				default: $instruc  = "";  break;
+				case 'CINEPOLIS': $instruc  = "Para hacer válido tu premio acude al Cinépolis VIP de tu preferencia con tu código. Válido de Lunes a Domingo.";  break;
+				case 'NETFLIX': $instruc  = "Para aclarar dudas sobre cómo hacer válido tu premio, ingresa a la página de Netflix <a href='https://www.netflix.com/mx/'>aquí</a>";  break;
+				case 'SPOTIFY': $instruc  = "Para aclarar dudas sobre cómo hacer válido tu premio, ingresa a la página de Spotify <a href='https://www.spotify.com/mx/'>aquí</a>";  break;
+				default: $instruc  = $tipo;  break;
 			}
 
 			$texto_mail = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

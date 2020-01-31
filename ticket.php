@@ -44,7 +44,7 @@
       <?php } ?>
       <?php if($estatus == 'GA') { /* Si es Ganador mostrar los premios*/?>
           <li class="displayFlex"><p>Lugar:</p><span><?php echo $pos ?></span></li>
-          <li class="displayFlex"><p>Premios:</p><br><span></span></li><li class="displayFlex"><p></p><br><span><?php echo $listpremios ?></span></li>
+          <!--<li class="displayFlex"><p>Premios:</p><br><span></span></li><li class="displayFlex"><p></p><br><span><?php echo $listpremios ?></span></li>-->
        <?php } ?>
     </ul>
     <div id="ticketHolder">

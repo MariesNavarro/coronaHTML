@@ -4,10 +4,21 @@
 	require_once('backend/lib/db.php');
 	if(isset($_GET["fe"])) {	$fecha  = $_GET['fe']; } else { $fecha = "";}
 	$list_dias = list_registros_dias($fecha);	// lista de dias registros
+
+	// contadores
+	cont_registros($registros,$ganadores,$rechezados);
+	cont_premiosdisponibles($cinepolis,$netflix,$spotify);
 ?>
+
  <a href="#" class="logout">Cerrar sesión</a>
 
   <section id="tabla" class="displayFlex">
+
+		<div id="sendWinWr" class="displayFlex">
+			<p>Total de Tickets Registros <strong class="aprobado"><?php echo $registros?></strong> Ganadores <strong class="ganador"><?php echo $ganadores?></strong> Rechazados <strong class="rechazado"><?php echo $rechezados?></strong></p>
+				<!--<p>Total de Premios disponibles Cinépolis <strong class="pendiente"><?php echo $cinepolis?></strong> Spotify <strong class="aprobado"><?php echo $spotify?></strong> Nextflix <strong class="rechazado"><?php echo $netflix?></strong></p>-->
+		</div>
+
 		<p>Tickets del día</p>
 		<select class="" name="" id="selectRegistrosdia">
 				<?php  echo $list_dias; ?>
@@ -40,7 +51,7 @@
       <p>Ya has aprobado <strong id="contap" class="aprobado"></strong> ticket(s), rechazados <strong id="contre" class="rechazado"></strong> ticket(s), pendientes <strong id="contpe" class="pendiente"></strong> ticket(s), ganadores <strong id="contga" class="ganador"></strong> ticket(s)</p>
       <strong id="msg" class="alertaOk"></strong>
       <!--¿Quieres enviar a los ganadores del día? </p>-->
-      <a role="button" class="btns btnEnviar" id="btnEnviar">
+      <a role="button" class="btns btnEnviar" id="btnEnviar" style="width:270px;">
         <div class="color trans5"></div>
         <p>Enviar ganadores</p>
       </a>
@@ -67,6 +78,12 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 	  	console.log('ready');
+			/*
+ 			var cinepolis = "<?php echo $cinepolis ?>";
+			var spotify 	= "<?php echo $spotify ?>";
+			var netflix 	= "<?php echo $netflix ?>";
+			*/
+
 			var fecha 	= $("#selectRegistrosdia").val();
 			$('#btnEnviar').css('display', 'none');
 			if (fecha != '0'){ get_registros(fecha);	} else { $("#lstRegistrosdia").empty();}

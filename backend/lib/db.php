@@ -140,6 +140,87 @@ function cont_ganadores($fecha){
   return $salida;
 }
 
+/* cont registros totales */
+function cont_registros(&$registros,&$ganadores,&$rechezados)
+{
+  $salida     = 0;
+  $registros  = 0;
+  $ganadores  = 0;
+  $rechezados = 0;
+  $link     = connect();
+
+  /* registros */
+  $consulta = "SELECT count('x') cont FROM coro_registros";
+  if ($resultado = mysqli_query($link, $consulta)) {
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+         $registros=$fila["cont"];
+    }
+    mysqli_free_result($resultado);
+   }
+
+   /* Ganadores */
+   $consulta = "SELECT count('x') cont FROM coro_registros WHERE estatus = 'GA'";
+   if ($resultado = mysqli_query($link, $consulta)) {
+     while ($fila = mysqli_fetch_assoc($resultado)) {
+          $ganadores=$fila["cont"];
+     }
+     mysqli_free_result($resultado);
+    }
+
+    /* Rechazados */
+    $consulta = "SELECT count('x') cont FROM coro_registros WHERE estatus = 'RE'";
+    if ($resultado = mysqli_query($link, $consulta)) {
+      while ($fila = mysqli_fetch_assoc($resultado)) {
+           $rechezados=$fila["cont"];
+      }
+      mysqli_free_result($resultado);
+     }
+
+  Close($link);
+  return $salida;
+}
+
+/* cont premios disponibles */
+function cont_premiosdisponibles(&$cinepolis,&$netflix,&$spotify)
+{
+  $salida     = 0;
+  $cinepolis  = 0;
+  $netflix    = 0;
+  $spotify    = 0;
+  $link       = connect();
+
+  /* $cinepolis */
+  $consulta = "SELECT count('x') cont FROM coro_premios WHERE tipo = 'CINEPOLIS' AND estatus = 'PE'";
+  if ($resultado = mysqli_query($link, $consulta)) {
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+         $cinepolis=$fila["cont"];
+    }
+    mysqli_free_result($resultado);
+   }
+
+   /* $netflix */
+   $consulta = "SELECT count('x') cont FROM coro_premios WHERE tipo = 'NETFLIX' AND estatus = 'PE'";
+   if ($resultado = mysqli_query($link, $consulta)) {
+     while ($fila = mysqli_fetch_assoc($resultado)) {
+          $netflix=$fila["cont"];
+     }
+     mysqli_free_result($resultado);
+    }
+
+    /* $spotify */
+    $consulta = "SELECT count('x') cont FROM coro_premios WHERE tipo = 'SPOTIFY' AND estatus = 'PE'";
+    if ($resultado = mysqli_query($link, $consulta)) {
+      while ($fila = mysqli_fetch_assoc($resultado)) {
+           $spotify=$fila["cont"];
+      }
+      mysqli_free_result($resultado);
+     }
+
+  Close($link);
+  return $salida;
+}
+
+
 /* Listado de registros de un día X */
 function list_registros($fecha){
   $reg      = 0;
@@ -228,10 +309,12 @@ function list_premios_email($id,&$tipo){
          $salida=$salida.'
             <div style="color:#3b5998;font-family:Verdana, Geneva, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
               <div style="font-size: 14px; line-height: 1.2; font-family: Verdana, Geneva, sans-serif; color: #3b5998; mso-line-height-alt: 17px;">
-                <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 15px;">&nbsp;<strong>'.$fila["descripcion"].'</strong></span></p>
-                <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 15px;">por&nbsp;<strong>$'.$fila["monto"].'</strong></span></p><br>
-                <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 18px;">Código&nbsp;<strong style="color:#FF8C00;">'.$fila["codigo"].'</strong></span></p><br>
-                <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 12px;">Vigencia al&nbsp;<strong>'.$fila["vigencia"].'</strong></span></p>
+                <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 15px;">&nbsp;<strong>'.$fila["descripcion"].'</strong></span></p>';
+        if ($fila["tipo"] == 'SPOTIFY') {
+          $salida=$salida.'<p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 15px;">por&nbsp;<strong>$'.$fila["monto"].'</strong></span></p>';
+        }
+        $salida=$salida.'<br><p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 18px;">Código&nbsp;<strong style="color:#FF8C00;">'.$fila["codigo"].'</strong></span></p><br>
+                <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: center; font-family: Verdana, Geneva, sans-serif; mso-line-height-alt: 18px; margin: 0;"><span style="font-size: 12px;">Vigencia &nbsp;<strong>'.$fila["vigencia"].'</strong></span></p>
               </div>
             </div>
             <hr width=400>
@@ -476,16 +559,16 @@ function enviar_ganadores($fecha) {
       // obtener los premios y asignarlos
       switch ($pos) {
        case 1:  /* ganador 1: dos boletos dobles para acudir al cine Cinépolis VIP. */
-           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'CINE' LIMIT 2";
+           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'CINEPOLIS ' LIMIT 2";
            break;
        case 2:  /* ganador 2: 1 tarjetas de Netflix con crédito de $200.00 M.N. (Cien Pesos 00/100 Moneda Nacional), cada una. */
            //$consulta = "SELECT id FROM (SELECT id  FROM admin_coronasani.coro_premios WHERE activo = 'S' AND estatus = 'PE'  AND tipo = 'CINE' AND Monto = 200 LIMIT 1) A";
            //$consulta .= " UNION ";
            //$consulta .= "SELECT id FROM (SELECT id FROM admin_coronasani.coro_premios WHERE activo = 'S' AND estatus = 'PE'  AND tipo = 'AMAZ' AND Monto = 100 LIMIT 1) B";
-           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'NETF' LIMIT 1";
+           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'NETFLIX' LIMIT 1";
            break;
        case 3:  /* ganador 3: dos tarjetas de Spotify con crédito de $100.00 M.N. (Cien Pesos 00/100 Moneda Nacional), cada una.   */
-           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'SPOT' LIMIT 2";
+           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'SPOTIFY' LIMIT 2";
            break;
        default:
            $consulta ="";
