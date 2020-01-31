@@ -5,6 +5,15 @@ function loading(c){
 	 let t19 = new TimelineMax({repeat: -1}); t19.fromTo(_("#square25"), 2, {x:-100,ease:Power0.easeNone},{x:160,ease:Power0.easeNone});
 }
 
+function popFoot(c){
+		var wr = document.getElementById("popFoot");
+		if(c === "open"){
+			wr.setAttribute("class", "displayFlex");
+		} else {
+			wr.setAttribute("class", "displayNone");
+		}
+}
+
 /******** regsitrar Ticket *******/
 function registrar(sucursal, monto, nro, fecha,nombre, email,telef, cp) {
 	    /*var huellalogin=huella();*/

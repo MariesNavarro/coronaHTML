@@ -25,6 +25,46 @@
 		"oAP": "/404.html",
 		"oF": 0
 		},
+	"/anexos/ticket_referencia.pdf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/anexos/ticket_referencia.pdf",
+		"oF": 0
+		},
+	"/backend/lib/conexion.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/backend/lib/conexion.php",
+		"oF": 0
+		},
+	"/backend/lib/db.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/backend/lib/db.php",
+		"oF": 0
+		},
+	"/backend/lib/funciones.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/backend/lib/funciones.php",
+		"oF": 0
+		},
+	"/backend/lib/log.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/backend/lib/log.php",
+		"oF": 0
+		},
 	"/css/fonts/BrandonGrotesque-Black.eot": {
 		"cB": 0,
 		"ft": 8192,
@@ -89,6 +129,26 @@
 		"oAP": "/css/fonts/BrandonGrotesque-Light.woff2",
 		"oF": 0
 		},
+	"/css/master-new.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/master-new-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/css/master-ori.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/css/master-ori-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/css/master.css": {
 		"aP": 1,
 		"bl": 0,
@@ -99,12 +159,52 @@
 		"oF": 1,
 		"oS": 3
 		},
+	"/footer.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/footer.php",
+		"oF": 0
+		},
 	"/ganadores.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/ganadores.html",
+		"oF": 0
+		},
+	"/ganadores.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/ganadores.php",
+		"oF": 0
+		},
+	"/header.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/header.php",
+		"oF": 0
+		},
+	"/headeradmin.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/headeradmin.php",
+		"oF": 0
+		},
+	"/home.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/home.php",
 		"oF": 0
 		},
 	"/img/corona-logotipo.svg": {
@@ -127,12 +227,34 @@
 		"plM": 52780316221407,
 		"prP": 0
 		},
+	"/img/cover-desktop-ori.jpg": {
+		"ft": 16384,
+		"iS": 190391,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/img/cover-desktop-ori.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"/img/cover-desktop.jpg": {
 		"ft": 16384,
 		"iS": 190391,
 		"jF": 0,
 		"oA": 0,
 		"oAP": "/img/cover-desktop.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/img/cover-mobile-ori.jpg": {
+		"ft": 16384,
+		"iS": 188570,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/img/cover-mobile-ori.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
@@ -439,6 +561,50 @@
 		"plM": 52780316221407,
 		"prP": 0
 		},
+	"/img/mail/face-8.png": {
+		"ft": 32768,
+		"iS": 1426,
+		"oA": 0,
+		"oAP": "/img/mail/face-8.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/img/mail/header-mail-100 - orig.jpg": {
+		"ft": 16384,
+		"iS": 1011303,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/img/mail/header-mail-100 - orig.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/img/mail/header-mail-100.jpg": {
+		"ft": 16384,
+		"iS": 131183,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/img/mail/header-mail-100.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/img/mail/visita-full-8.png": {
+		"ft": 32768,
+		"iS": 5424,
+		"oA": 0,
+		"oAP": "/img/mail/visita-full-8.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/img/media/social_thumbnail_fb.jpg": {
 		"ft": 16384,
 		"iS": 144375,
@@ -472,12 +638,39 @@
 		"opt": 0,
 		"q": 100
 		},
-	"/index.html": {
+	"/index-old.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/index.html",
+		"oAP": "/index-old.html",
+		"oF": 0
+		},
+	"/index.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/index.php",
+		"oF": 0
+		},
+	"/js/main.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/js/main-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/legales/Terminos_Condiciones_Promocion.pdf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/legales/Terminos_Condiciones_Promocion.pdf",
 		"oF": 0
 		},
 	"/login.html": {
@@ -488,6 +681,14 @@
 		"oAP": "/login.html",
 		"oF": 0
 		},
+	"/login.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/login.php",
+		"oF": 0
+		},
 	"/mensaje.html": {
 		"cB": 0,
 		"ft": 8192,
@@ -496,12 +697,36 @@
 		"oAP": "/mensaje.html",
 		"oF": 0
 		},
+	"/mensaje.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/mensaje.php",
+		"oF": 0
+		},
 	"/registro.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/registro.html",
+		"oF": 0
+		},
+	"/registro.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/registro.php",
+		"oF": 0
+		},
+	"/respuesta.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/respuesta.php",
 		"oF": 0
 		},
 	"/tabla.html": {
@@ -518,6 +743,30 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/ticket.html",
+		"oF": 0
+		},
+	"/ticket.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/ticket.php",
+		"oF": 0
+		},
+	"/upload.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/upload.php",
+		"oF": 0
+		},
+	"/validsession.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/validsession.php",
 		"oF": 0
 		}
 	},

@@ -1045,6 +1045,57 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #ticketInterface>a{
   margin: 30px auto;
 }
+#popFoot{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255,255,255,0.95);
+  z-index: 9999;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+#popFoot>div{
+  position: relative;
+  color: #fff;
+  line-height: 1.5;
+  width: 250px;
+  height: 250px;
+  background: #0069b3;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+#popFoot>div>#closeAyuda{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+#popFoot>div>#closeAyuda:hover{
+  text-decoration: underline;
+}
+#popFoot>div>h3{ font-size: 1.5rem;  }
+#popFoot>div>p>b{ font-family: 'BrandonBlack'}
+#popFoot>div>a{ color: #fff; }
+#popFoot>div>a:hover{ opacity: 0.8; }
 /*DESKTOP*/
 @media (min-width: 720px) {
   #ganadores>#interface>select{ border:1px solid #c8c8c8; }
@@ -1060,10 +1111,10 @@ footer.footMsj>p>a:hover{ color: #808080 }
   nav>a{ margin-left: 15px; }
   nav>a.whiteWinners{ background-image: url('../img/corona-logotipo.svg'); }
   footer{
-    font-size: 1rem;
+    font-size: 1.2rem;
     background: none;
     margin: 0 auto;
-    width: 560px;
+    width: 700px;
     height: 50px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
