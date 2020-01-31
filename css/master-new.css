@@ -1,4 +1,4 @@
-/*
+  /*
 v1
 20 de Enero 2020
 Gana en la Feria Corona
@@ -95,7 +95,8 @@ footer>p{
 footer>p>span{display: none}
 /* Footer Home Colors */
 footer.home{
-color: #fff }
+
+  color: #fff }
 footer.home>p>a{ color: #fff }
 footer.home>p:last-child{ color:#ebbc56 }
 footer.bluePage{ background: #0069b3 }
@@ -126,11 +127,11 @@ footer.footMsj>p>a:hover{ color: #808080 }
   overflow:hidden;
   -webkit-box-shadow: 4px 4px 15px 0px rgba(50,50,168,0.5);
   -moz-box-shadow: 4px 4px 15px 0px rgba(50,50,50,0.5);
-  box-shadow: 4px 4px 15px 0px rgba(50,50,50,0.5);font-size: 1.2rem;
+  box-shadow: 4px 4px 15px 0px rgba(50,50,50,0.5);
 }
 .btns>p{
   position: relative;
-    z-index: 1; /*200; CG*/
+  z-index: 1; /*200;*/
 }
 .btns>.color{
   position: absolute;
@@ -167,13 +168,10 @@ footer.footMsj>p>a:hover{ color: #808080 }
   height: 55px;
   line-height: 55px;
   color: #fff;
-  cursor: pointer;  /* CG */
 }
 .btnSube:hover>p{ color: #0069b3 }
 .btnSube>.color{ background: #fff }
 .btnSube:hover>p>span{ background-image:url('../img/ic/cam-blue.svg') }
-
-/* CG */
 .btnSubeOculto{
   width: 0.1px;
   height: 0.1px;
@@ -182,7 +180,6 @@ footer.footMsj>p>a:hover{ color: #808080 }
   position: absolute;
   z-index: -1;
 }
-
 .btnEnviar{
   margin: 10px auto;
   width: 220px;
@@ -279,7 +276,37 @@ footer.footMsj>p>a:hover{ color: #808080 }
         1px 1.5em;
       background-repeat: no-repeat;
 }
-.qstWr>select::-ms-expand { display: none; }
+.qstWr>datalist::-ms-expand { display: none; }
+
+.qstWr>datalist, .qstWr>input,
+#ganadores>#interface>datalist{
+  border-radius: 0;
+  border: 0;
+  border-bottom:1px solid #666666;
+  color: #0069b3;
+  font-size: 1.1rem;
+  background: #fff;
+  padding: 0;
+}
+.qstWr>datalist {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #11396C 50%),
+        linear-gradient(135deg, #11396C 50%, transparent 50%),
+        linear-gradient(to right, #fff, #fff);
+      background-position:
+        calc(100% - 20px) calc(0.3em + 1px),
+        calc(100% - 15px) calc(0.3em + 1px),
+        calc(100% - 2.3em);
+      background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+      background-repeat: no-repeat;
+}
+.qstWr>datalist::-ms-expand { display: none; }
 .qstWr>input::-webkit-input-placeholder { color: #0069b3; }
 .qstWr>input:-ms-input-placeholder { color: #0069b3; }
 .qstWr>input::placeholder { color: #0069b3; }
@@ -309,13 +336,13 @@ footer.footMsj>p>a:hover{ color: #808080 }
 
 .alertaOk{  /*.qstWr>*/
 /*  overflow: hidden;*/
-  line-height: 30px;
+  line-height: 20px;
   margin: 5px 0;
   color: #228B22;
   text-align: center;
   font-weight: bold;
-  font-size: 1.4rem;
 }
+
 /* HOME */
 #home{
   position: relative;
@@ -491,7 +518,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #ganadores{
   margin-top: -110px;
   width: 100vw;
-  border:1px solid #0069b3;
+  /*border:1px solid #0069b3; CG*/
 }
 #ganadores>header{
   line-height: 20px;
@@ -505,7 +532,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 }
 #ganadores>#interface{
   margin: 15px auto;
-  width: 300px;
+  width: 100px; /*300px; CG*/
   height: 30px;
   -webkit-box-pack: space-between;
   -webkit-justify-content: space-between;
@@ -523,7 +550,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   width: 300px;
   border:1px solid #fff;
   padding: 3px;
-  font-size: 0.8rem;
+  font-size: 1.0rem; /* 0.8rem; CG */
   text-align: center;
 }
 #ganadores>#interface>a{
@@ -738,15 +765,8 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #login>div>input:last-child{
   margin-bottom: 10px;
 }
-.logout{
-  display: block;
-  text-align: left;
-  color: #0069b3;
-  font-family: 'BrandonBlack';
-  margin-left: 20px;
-}
 #tabla{
-  margin-top: 0px; /*120px;*/
+  /*margin-top: 120px; CG */
   width: 100vw;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -757,7 +777,6 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #tabla>p{
   margin: 15px auto;
   text-transform: uppercase;
-  font-weight: bold;
 }
 #tabla>select{
   margin: 10px auto 20px auto;
@@ -783,7 +802,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #tabla>table>tbody>tr>td{
   text-align: center;
   line-height: 1;
-  padding: 10px;
+  padding: 5px;  /*10px; CG */
   border: 1px solid #c6c6c6;
 }
 .status{ font-family: 'BrandonBlack'; }
@@ -850,7 +869,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   transform: translateY(5px);
  }
 #sendWinWr{
-  margin: 20px auto;
+  margin: 10px auto;
   position: relative;
   width: 100vw;
   line-height: 1.5;
@@ -868,7 +887,6 @@ footer.footMsj>p>a:hover{ color: #808080 }
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  font-size: 1.2rem;  /* CG */
 }
 
 #popAprobados{
@@ -901,10 +919,12 @@ footer.footMsj>p>a:hover{ color: #808080 }
   background: #0069b3;
 }
 #popAprobados>div>p{
-  margin-top:25px;
+  margin-top:40px;
   display: block;
   width: 100%;
   text-align: center;
+  font-weight: bold;
+  font-weight: bold;
 }
 #popAprobados>div>div{
   margin: 20px auto;
@@ -921,7 +941,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   line-height: 55px;
   font-family: 'BrandonBlack', sans-serif;
 }
-#ticketInterface{ padding-bottom: 50px; }
+#ticketInterface{ padding-bottom: 5px; /*  50px*/}
 #ticketInterface>.bts>span:first-child,
 #popAprobados>div>div>a:first-child{ background: #00b34a}
 #ticketInterface>.bts>span:last-child,
@@ -983,13 +1003,13 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #popAprobadosEnviados>div>div>a:last-child{ background: #c42b53}
 #popAprobadosEnviados>div>div>a:hover{ opacity: 0.7; }
 
+
 #ticket{
   line-height: 1.2;
   position: relative;
-  margin-top: 0px; /*120px;*/
+  /*margin-top: 120px; CG */
   width: 100vw;
 }
-
 #ticketInfo, #ticketInterface{
   text-align: center;
   width: 90vw;
@@ -1076,7 +1096,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   footer.home>p>a{ color: #808080 }
   footer.home>p>a:hover{ color: #0069b3 }
   footer.home>p:last-child{ color:#808080 }
-  footer.bluePage{ width: 550px;}   /*  400px; CG */
+  footer.bluePage{ width: 400px;}
   footer.bluePage{ color: #0069b3 }
   footer.bluePage>p>a{ color: #0069b3 }
   footer.bluePage>p:last-child{ color:#0069b3 }
@@ -1090,11 +1110,20 @@ footer.footMsj>p>a:hover{ color: #808080 }
     height: 100%;
     background-image: url('../img/cover-desktop.jpg');
   }
+  .qstWr>datalist, .qstWr>input{ font-size: 0.9rem; text-align: center; }
+  .qstWr>datalist{ padding-left: calc(50% - 120px)}
+  #home{ height: calc(100vh - 60px); }
+  #home>#photo{
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/cover-desktop.jpg');
+  }
   #home>#info{
     position: absolute;
-    bottom: 0;
+    bottom: 70px;  /* 0; CG */
     width: 380px;
     height: 320px;
+    font-size: 1.5rem;  /* 0; CG */
   }
   #registro{
     margin-top: -120px;
@@ -1114,7 +1143,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   #registro>header>h2>span{ width: 100% }
   #form{
     width: 100vw;
-    height: 335px; /*320px;*/
+    height: 345px;  /*320px; CG*/
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
@@ -1126,7 +1155,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
     padding: 20px 40px;
   }
   #extraForm{
-    height: 220px;  /* 160px; CG */
+    height: 160px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;

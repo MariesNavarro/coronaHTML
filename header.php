@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="google" content="notranslate">
+    <title>Gana en la Feria Corona | Corona México</title>
+    <style>
+      #loading{z-index: 200; position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; background: #0069b3; color: #fff; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; } #loading>p{margin: 10px auto;}
+    </style>
+    <link rel="canonical" href="https://ganaenlaferiacorona.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0000, minimum-scale=1.0000, maximum-scale=1.0000, user-scalable=yes">
+    <link rel="prefetch" href="img/coronaw-logotipo.svg">
+    <meta name="description" content="Gana en la feria con Corona México. Registra tu ticket ó factura. ¡Todos los días puedes participar! Con Corona México haz que tu baño sea el que siempre soñaste.">
+    <meta name="keywords" content="Corona, México, Sanitarios, Sanimex, Promoción">
+    <meta name="author" content="OET Capital">
+    <meta property="og:title" content="Gana en la Feria Corona | Corona México">
+    <meta property="og:url" content="https://ganaenlaferiacorona.com">
+    <meta property="og:site_name" content="Gana en la Feria Corona | Corona México">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Gana en la feria con Corona México. Registra tu ticket ó factura. ¡Todos los días puedes participar! Con Corona México haz que tu baño sea el que siempre soñaste.">
+    <meta property="og:image" content=“img/media/social_thumbnail_fb.jpg”>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="650">
+    <meta name="twitter:card" content=“summary_large_image”>
+    <meta name="twitter:site" content="https://ganaenlaferiacorona.com">
+    <meta name="twitter:title" content="Gana en la Feria Corona | Corona México">
+    <meta name="twitter:description" content="Gana en la feria con Corona México. Registra tu ticket ó factura. ¡Todos los días puedes participar! Con Corona México haz que tu baño sea el que siempre soñaste.">
+    <meta name="twitter:image" content="img/media/social_thumbnail_tw.jpg">
+    <meta name="twitter:image:width" content="750">
+    <meta name="twitter:image:height" content="392">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/fav/favicon-16x16.png">
+    <link rel="manifest" href="img/fav/site.webmanifest">
+    <link rel="mask-icon" href="img/fav/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="img/fav/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/master.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157357765-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-157357765-1');
+    </script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v5.0&appId=161155945189102&autoLogAppEvents=1"></script>
+  </head>
+  <body>
+    <section id="loading" class="displayNone trans5">
+      <img src="img/coronaw-logotipo.svg" alt="Logotipo Blanco Corona México" width="160">
+      <p>Espere...</p>
+      <svg width="160" height="30">
+      <rect id="square25" y="50%" width="70" height="4" style="fill:white" />
+      </svg>
+    </section>
+    <nav class="displayFlex">
+      <a href="index.php" class="blue"></a>
+    </nav>

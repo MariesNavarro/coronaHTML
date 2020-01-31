@@ -95,7 +95,8 @@ footer>p{
 footer>p>span{display: none}
 /* Footer Home Colors */
 footer.home{
-color: #fff }
+
+  color: #fff }
 footer.home>p>a{ color: #fff }
 footer.home>p:last-child{ color:#ebbc56 }
 footer.bluePage{ background: #0069b3 }
@@ -126,11 +127,11 @@ footer.footMsj>p>a:hover{ color: #808080 }
   overflow:hidden;
   -webkit-box-shadow: 4px 4px 15px 0px rgba(50,50,168,0.5);
   -moz-box-shadow: 4px 4px 15px 0px rgba(50,50,50,0.5);
-  box-shadow: 4px 4px 15px 0px rgba(50,50,50,0.5);font-size: 1.2rem;
+  box-shadow: 4px 4px 15px 0px rgba(50,50,50,0.5);
 }
 .btns>p{
   position: relative;
-    z-index: 1; /*200; CG*/
+  z-index: 200;
 }
 .btns>.color{
   position: absolute;
@@ -167,22 +168,10 @@ footer.footMsj>p>a:hover{ color: #808080 }
   height: 55px;
   line-height: 55px;
   color: #fff;
-  cursor: pointer;  /* CG */
 }
 .btnSube:hover>p{ color: #0069b3 }
 .btnSube>.color{ background: #fff }
 .btnSube:hover>p>span{ background-image:url('../img/ic/cam-blue.svg') }
-
-/* CG */
-.btnSubeOculto{
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
 .btnEnviar{
   margin: 10px auto;
   width: 220px;
@@ -283,38 +272,11 @@ footer.footMsj>p>a:hover{ color: #808080 }
 .qstWr>input::-webkit-input-placeholder { color: #0069b3; }
 .qstWr>input:-ms-input-placeholder { color: #0069b3; }
 .qstWr>input::placeholder { color: #0069b3; }
-
-/* CG */
-.qstWrDate>input{
-  font-size: 0.9rem;
-  text-align: center;
-  border-radius: 0;
-  border: 0;
-  border-bottom:1px solid #666666;
-  color: #0069b3;
-  font-size: 1.1rem;
-  background: #fff;
-  padding: 0;}
-.qstWrDate>input::-webkit-input-placeholder { color: #0069b3; }
-.qstWrDate>input:-ms-input-placeholder { color: #0069b3; }
-.qstWrDate>input::placeholder { color: #0069b3; }
-/* CG fin */
-
-.alerta{  /*.qstWr>*/
+.qstWr>.alerta{
   overflow: hidden;
   line-height: 20px;
   margin: 5px 0;
   color: #c42b53;
-}
-
-.alertaOk{  /*.qstWr>*/
-/*  overflow: hidden;*/
-  line-height: 30px;
-  margin: 5px 0;
-  color: #228B22;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.4rem;
 }
 /* HOME */
 #home{
@@ -332,7 +294,6 @@ footer.footMsj>p>a:hover{ color: #808080 }
   text-align: center;
   background: #c42b53;
   height: 300px;
-  font-size: 1.5rem; /* CG */
 }
 #home>#info>img{
   margin: 20px auto;
@@ -738,15 +699,8 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #login>div>input:last-child{
   margin-bottom: 10px;
 }
-.logout{
-  display: block;
-  text-align: left;
-  color: #0069b3;
-  font-family: 'BrandonBlack';
-  margin-left: 20px;
-}
 #tabla{
-  margin-top: 0px; /*120px;*/
+  margin-top: 120px;
   width: 100vw;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -757,7 +711,6 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #tabla>p{
   margin: 15px auto;
   text-transform: uppercase;
-  font-weight: bold;
 }
 #tabla>select{
   margin: 10px auto 20px auto;
@@ -788,9 +741,8 @@ footer.footMsj>p>a:hover{ color: #808080 }
 }
 .status{ font-family: 'BrandonBlack'; }
 .aprobado{ color: #00b34a }
-.pendiente{ color: #0000FF /*#ebbc56*/  }
+.pendiente{ color: #ebbc56  }
 .rechazado{ color: #c42b53 }
-.ganador{ color: #FF8C00 }
 .action>a{
   margin: 0 auto;
   cursor: pointer;
@@ -850,7 +802,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   transform: translateY(5px);
  }
 #sendWinWr{
-  margin: 20px auto;
+  margin: 10px auto;
   position: relative;
   width: 100vw;
   line-height: 1.5;
@@ -868,7 +820,6 @@ footer.footMsj>p>a:hover{ color: #808080 }
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  font-size: 1.2rem;  /* CG */
 }
 
 #popAprobados{
@@ -928,68 +879,12 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #popAprobados>div>div>a:last-child{ background: #c42b53}
 #popAprobados>div>div>a:hover{ opacity: 0.7; }
 
-#popAprobadosEnviados{
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5000;
-  background: rgba(255, 255, 255, 0.95);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  line-height: 1.2;
-}
-#popAprobadosEnviados>div{
-  color: #fff;
-  width: 300px;
-  height: 200px;
-  background: #0069b3;
-}
-#popAprobadosEnviados>div>p{
-  margin-top:40px;
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-}
-#popAprobadosEnviados>div>div{
-  margin: 20px auto;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-#popAprobadosEnviados>div>div>a{
-  text-align: center;
-  display: block;
-  width: 100px;
-  height: 55px;
-  line-height: 55px;
-  font-family: 'BrandonBlack', sans-serif;
-}
-#popAprobadosEnviados>div>div>a:first-child{ background: #00b34a}
-#popAprobadosEnviados>div>div>a:last-child{ background: #c42b53}
-#popAprobadosEnviados>div>div>a:hover{ opacity: 0.7; }
-
 #ticket{
   line-height: 1.2;
   position: relative;
-  margin-top: 0px; /*120px;*/
+  margin-top: 120px;
   width: 100vw;
 }
-
 #ticketInfo, #ticketInterface{
   text-align: center;
   width: 90vw;
@@ -1076,7 +971,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   footer.home>p>a{ color: #808080 }
   footer.home>p>a:hover{ color: #0069b3 }
   footer.home>p:last-child{ color:#808080 }
-  footer.bluePage{ width: 550px;}   /*  400px; CG */
+  footer.bluePage{ width: 400px;}
   footer.bluePage{ color: #0069b3 }
   footer.bluePage>p>a{ color: #0069b3 }
   footer.bluePage>p:last-child{ color:#0069b3 }
@@ -1114,7 +1009,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   #registro>header>h2>span{ width: 100% }
   #form{
     width: 100vw;
-    height: 335px; /*320px;*/
+    height: 320px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
@@ -1126,7 +1021,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
     padding: 20px 40px;
   }
   #extraForm{
-    height: 220px;  /* 160px; CG */
+    height: 160px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
