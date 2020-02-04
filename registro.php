@@ -60,9 +60,15 @@
 			</div>
 			<!-- Apellidos -->
 			<div class="qstWr">
-				<label for="nombre">Tus Apellidos</label>
-				<input type="text" name="nombre" id="nombre" placeholder="Ingresa Nombre" required>
-				<p class="alerta" id="msgNombre"></p>
+				<label for="nombre">Tu Apellido paterno</label>
+				<input type="text" name="apellidopaterno" id="apellidopaterno" placeholder="Ingresa Apellido paterno" required>
+				<p class="alerta" id="msgapellidopaterno"></p>
+			</div>
+			<!-- Apellidos -->
+			<div class="qstWr">
+				<label for="nombre">Tu Apellido materno</label>
+				<input type="text" name="apellidomaterno" id="apellidomaterno" placeholder="Ingresa Apellido materno" required>
+				<p class="alerta" id="msgapellidomaterno"></p>
 			</div>
 			<!-- Teléfono -->
 			<div class="qstWr">
