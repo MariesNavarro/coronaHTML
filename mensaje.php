@@ -22,6 +22,7 @@
 				case 0:  /* error */	$msg = "Lo sentimos <b>algo falló</b> y tu ticket no fue enviado correctamente.";	break;
 				case -1:  /* ticket ya existe */	$msg = "Este ticket ya fue registrado. Lo sentimos los tickets sólo pueden ser registrados una vez.";	break;
 				case -2:  /* fecha no coincide con la de hoy */	$msg = "La fecha del ticket debe coincidir con la fecha de hoy.";	break;
+				case -3: /* error al subir el archivo */ $msg  = "Gracias <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pero hubo un problema al subir la imagen, favor enviarla al email contato@ganaenlaferiacorona.com"; break;
 				default:	$msg  = "Gracias <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pronto te llegará una confirmación al correo que registraste. Recuerda revisar tu carpeta de correos no deseados (spam)";
 			}
 	} else {

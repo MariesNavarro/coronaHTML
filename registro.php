@@ -173,7 +173,7 @@
 			 if (telef=="")  { msgError = "Debes ingresar tu teléfono"; $('#msgTelef').text(msgError);validOk = false; }
 			 if (cp=="") { msgError = "Debes ingresar tu código postal"; $('#msgCP').text(msgError);validOk = false; }
 			 if (!cpIsValid (cp) || cp.length > 5 || cp.length < 5) { msgError = "Debes ingresar un código postal válido (5 dígitos)"; $('#msgCP').text(msgError);validOk = false; }
-		   if (($('#ticketFile')[0].files.length==0) ) { msgError = "Debes seleccionar un archivo con la imagen del ticket"; $('#msgFile').text(msgError); validOk = false;}
+		   if (($('#ticketFile')[0].files.length<=0) ) { msgError = "Debes seleccionar un archivo con la imagen del ticket"; $('#msgFile').text(msgError); validOk = false;}
 	  	 if (!$('#terminos').prop('checked') ) { msgError = "Debes seleccionar acepto término y condiciones"; $('#msgTerminos').text(msgError); validOk = false;  }
 		   console.log(validOk+' '+msgError);
 

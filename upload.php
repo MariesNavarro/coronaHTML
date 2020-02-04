@@ -27,6 +27,9 @@
             $result =  "File is not an image.";
             $uploadOk = 0;
         }
+    } else {
+      $result = "File not load.";
+      $uploadOk = 0;
     }
 
     // Check if file already exists

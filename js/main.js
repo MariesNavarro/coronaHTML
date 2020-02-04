@@ -56,12 +56,12 @@ function aprobar_rechazar(id,estatus,observa,fechadia) {
 
 /******** sendfile *******/
 function sendfile(id,nro){
+		var result = 0;
 
 	  if($('#ticketFile')[0].files.length>0)
 	  {
   		var file_data = $('#ticketFile').prop('files')[0];
     	var form_data = new FormData();
-    	var result = 0;
 
     	form_data.append('file', file_data);
     	form_data.append('id',id);
@@ -87,7 +87,9 @@ function sendfile(id,nro){
 	            //window.location.href = "fallo.php";
 	        }
 	    });
-	  }
+	  } else {
+				window.location.href = "mensaje.php?id="+id+"&ms=-3";
+		}
 	  return result;
 }
 
