@@ -44,6 +44,12 @@
 					</div>
 					<p class="alerta" id="msgFecha"></p>
 				</div>
+				<!-- Correo -->
+				<div class="qstWr">
+					<label for="correo">Tu Correo</label>
+					<input type="email"  name="email" id="email" placeholder="Ingresa un Correo" required>
+					<p class="alerta" id="msgEmail"></p>
+				</div>
 		</div>
 		<div class="rightWr" class="displayFlex">
 			<!-- Nombre -->
@@ -52,11 +58,11 @@
 				<input type="text" name="nombre" id="nombre" placeholder="Ingresa Nombre" required>
 				<p class="alerta" id="msgNombre"></p>
 			</div>
-			<!-- Correo -->
+			<!-- Apellidos -->
 			<div class="qstWr">
-				<label for="correo">Tu Correo</label>
-				<input type="email"  name="email" id="email" placeholder="Ingresa un Correo" required>
-				<p class="alerta" id="msgEmail"></p>
+				<label for="nombre">Tus Apellidos</label>
+				<input type="text" name="nombre" id="nombre" placeholder="Ingresa Nombre" required>
+				<p class="alerta" id="msgNombre"></p>
 			</div>
 			<!-- Teléfono -->
 			<div class="qstWr">

@@ -356,7 +356,7 @@ function insert_registro($sucnom,$monto,$nro,$fechastr,$nombre,$email,$telef,$cp
   	if ($resultado = mysqli_query($link, $query)) {
   		if (mysqli_num_rows($resultado)>0) {
   			$result = -1;
-  			$error='Nuevo registro error nro. tikect ya existe: '.$nro;
+  			$error='Nuevo registro error nro. ticket ya existe: '.$nro;
 	      log_write($error);
   		}
   	}
