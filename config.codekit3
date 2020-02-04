@@ -129,26 +129,6 @@
 		"oAP": "/css/fonts/BrandonGrotesque-Light.woff2",
 		"oF": 0
 		},
-	"/css/master-new.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/css/master-new-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/css/master-ori.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/css/master-ori-min.css",
-		"oF": 0,
-		"oS": 3
-		},
 	"/css/master.css": {
 		"aP": 1,
 		"bl": 0,
@@ -165,6 +145,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/footer.php",
+		"oF": 0
+		},
+	"/footerganadores.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/footerganadores.php",
 		"oF": 0
 		},
 	"/ganadores.html": {
