@@ -3,6 +3,7 @@
 	require_once('backend/lib/db.php');
 
 	$list_dias = list_ganadores_dias();	// lista de dias ganadores
+	if ($list_dias=="") { $msg = "Sin ganadores"; } else { $msg = "";}
 ?>
 
 <section id="ganadores">
@@ -15,6 +16,7 @@
 			</select>
 	</div>
 	<ul id="winnersList" class="displayFlex">
+		<?php  echo $msg; ?>
 	</ul>
 </section>
 
@@ -25,7 +27,7 @@
 			$('footer').addClass('bluePage');
 
 			var fecha 	= $("#selectGanadoresdia").val();
-			if (fecha != '0'){ get_ganadores(fecha);	} else { $("#winnersList").empty();}
+			if (fecha != '0' && fecha != '' && fecha != null){ get_ganadores(fecha);	}
 
 	    $('#selectGanadoresdia').on('change', function (e) {
 				  var fecha 	= $("#selectGanadoresdia").val();

@@ -78,12 +78,73 @@ function list_registros_dias($fecha){
 
   if ($resultado = mysqli_query($link, $consulta)) {
     while ($fila = mysqli_fetch_assoc($resultado)) {
+         $cont_gana = cont_ganadores($fila["fecha"]);
+         if ($cont_gana==0) { $lbl ="";} else if ($cont_gana==1) { $lbl = " (Ganador ".$cont_gana.")";} else {$lbl = " (Ganadores ".$cont_gana.")";}
          if ($fila["fecha"] == $fecha) {
-           $salida=$salida.'<option class="" value="'.$fila["fecha"].'" selected>'.$fila["fecha"].'</option>';
+           $salida=$salida.'<option class="" value="'.$fila["fecha"].'" selected>'.$fila["fecha"].$lbl.'</option>';
          } else {
-           $salida=$salida.'<option class="" value="'.$fila["fecha"].'">'.$fila["fecha"].'</option>';
+           $salida=$salida.'<option class="" value="'.$fila["fecha"].'">'.$fila["fecha"].$lbl.'</option>';
          }
     }
+    /* liberar el conjunto de resultados */
+    mysqli_free_result($resultado);
+   }
+
+  Close($link);
+  return $salida;
+}
+
+/* Listado de registros de un día X */
+function list_registros($fecha){
+  $reg      = 0;
+  $pos      = 1;
+  $salida   = '';
+  $link     = connect();
+  $contap   = 0;
+  $contre   = 0;
+  $contpe   = 0;
+  $contga   = 0;
+  $observa  = "";
+  $archivo  = "sin_imagen_tb.jpg";
+  $consulta ="SELECT a.*, b.nombre sucursal
+              FROM coro_registros a
+              LEFT JOIN coro_sucursales b ON a.idsuc_ticket = b.id
+             WHERE DATE_FORMAT(a.fecha_ticket, '%d/%m/%Y') = '".$fecha."'
+          ORDER BY a.monto_ticket desc, a.fecha_insert asc";
+
+  if ($resultado = mysqli_query($link, $consulta)) {
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        // encriptar id
+        $id = encrypt_decrypt('e', $fila["id"]);
+        $estatus = $fila["estatus"];
+        $nombre  = $fila["nombre"].' '.$fila["apellidopaterno"].' '.$fila["apellidomaterno"];
+        $fecha   =  date('d/m/Y H:i',strtotime($fila["fecha_ticket"]));
+        $fecha2   =  date('d/m/Y H:i',strtotime($fila["fecha_insert"]));
+        $fecha3   =  date('d/m/Y',strtotime($fila["fecha_ticket"]));
+
+        if ( $fila["archivo_ticket"]!='') { $archivo =   $fila["archivo_ticket"];} else {  $archivo  = "sin_imagen_tb.jpg";}
+
+        $observa = ""; $estatusStr = ""; $estatusClass="";
+        switch ($estatus) {
+          case 'PE': $estatusStr = "Pendiente"; $estatusClass = "pendiente"; break;
+          case 'AP': $estatusStr = "Aprobado";  $estatusClass = "aprobado";  break;
+          case 'RE': $estatusStr = "Rechazado"; $estatusClass = "rechazado"; $observa = $fila["observaciones"]; break;
+          case 'GA': $estatusStr = "Ganador";   $estatusClass = "ganador"; break;
+          default: $estatusStr = $estatus;  break;
+        }
+
+        $salida=$salida.'<tr><td class="position">'.$pos.'</td><td class="name">'.$nombre.'</td><td class="id">'.$fila["nro_ticket"].'</td><td class="name">'.$fila["sucursal"].'</td><td class="total">$'.number_format($fila["monto_ticket"],2).'</td><td class="fecha">'.$fecha.'</td><td class="fecha">'.$fecha2.'</td><td  class="ticket"><a href="uploads/'.$archivo.'" title="Clic para descargar la imagen" download><img src="uploads/'.$archivo.'" style="width:50px"></a></td><td class="status '.$estatusClass.'">'.$estatusStr.'<p class="rechazadoobserva">'.$observa.'</p></td><td class="action"><a href="ticket.php?id='.$id.'&fe='.$fecha3.'" title="Revisar"></a></td></tr>';
+        if ($fila["estatus"]=='AP') {$contap++;}
+        if ($fila["estatus"]=='RE') {$contre++;}
+        if ($fila["estatus"]=='PE') {$contpe++;}
+        if ($fila["estatus"]=='GA') {$contga++;}
+        $pos++;
+    }
+    $salida=$salida.'<input type="hidden" id="contaph" name="contap" value="'.$contap.'">';
+    $salida=$salida.'<input type="hidden" id="contreh" name="contre" value="'.$contre.'">';
+    $salida=$salida.'<input type="hidden" id="contpeh" name="contpe" value="'.$contpe.'">';
+    $salida=$salida.'<input type="hidden" id="contgah" name="contga" value="'.$contga.'">';
+
     /* liberar el conjunto de resultados */
     mysqli_free_result($resultado);
    }
@@ -97,7 +158,7 @@ function list_ganadores($fecha){
   $reg      = 0;
   $salida   = '';
   $link     = connect();
-  $consulta = "SELECT nro_ticket, monto_ticket, posicion, DATE_FORMAT(fecha_ticket, '%d/%m/%Y') fecha, DATE_FORMAT(fecha_ticket, '%H:%i') hora
+  $consulta = "SELECT nro_ticket, monto_ticket, posicion,DATE_FORMAT(fecha_ticket, '%d/%m/%Y') fecha, DATE_FORMAT(fecha_ticket, '%H:%i') hora
               FROM coro_registros
              WHERE estatus = 'GA' AND DATE_FORMAT(fecha_ticket, '%d/%m/%Y') = '".$fecha."'
           ORDER BY posicion asc";
@@ -112,7 +173,7 @@ function list_ganadores($fecha){
            case 3: $posstr = "Tercer lugar";  break;
            default: $posstr = "Lugar ".$pos;  break;
          }
-         $salida=$salida.'<li><h3>Lugar '.$posstr.'</h3><h4>#'.$fila["nro_ticket"].'</h4><p>$'.number_format($fila["monto_ticket"],2).'</p></li>';
+         $salida=$salida.'<li><h3>'.$posstr.'</h3><h4>#'.$fila["nro_ticket"].'</h4><p>$'.number_format($fila["monto_ticket"],2).'</p></li>';
     }
     /* liberar el conjunto de resultados */
     mysqli_free_result($resultado);
@@ -221,55 +282,6 @@ function cont_premiosdisponibles(&$cinepolis,&$netflix,&$spotify)
 }
 
 
-/* Listado de registros de un día X */
-function list_registros($fecha){
-  $reg      = 0;
-  $pos      = 1;
-  $salida   = '';
-  $link     = connect();
-  $contap   = 0;
-  $contre   = 0;
-  $contpe   = 0;
-  $contga   = 0;
-  $consulta ="SELECT id,nombre,nro_ticket, monto_ticket, estatus
-              FROM coro_registros
-             WHERE DATE_FORMAT(fecha_ticket, '%d/%m/%Y') = '".$fecha."'
-          ORDER BY monto_ticket desc";
-
-  if ($resultado = mysqli_query($link, $consulta)) {
-    while ($fila = mysqli_fetch_assoc($resultado)) {
-        // encriptar id
-        $id = encrypt_decrypt('e', $fila["id"]);
-        $estatus = $fila["estatus"];
-
-        switch ($estatus) {
-          case 'PE': $estatusStr = "Pendiente"; $estatusClass = "pendiente"; break;
-          case 'AP': $estatusStr = "Aprobado";  $estatusClass = "aprobado";  break;
-          case 'RE': $estatusStr = "Rechazado"; $estatusClass = "rechazado"; break;
-          case 'GA': $estatusStr = "Ganador";   $estatusClass = "ganador"; break;
-          default: $estatusStr = $estatus;  break;
-        }
-
-        $salida=$salida.'<tr><td class="position">'.$pos.'</td><td class="name">'.$fila["nombre"].'</td><td class="id">'.$fila["nro_ticket"].'</td><td class="total">$'.number_format($fila["monto_ticket"],2).'</td><td class="status '.$estatusClass.'">'.$estatusStr.'</td><td class="action"><a href="ticket.php?id='.$id.'&fe='.$fecha.'" title="Revisar"></a></td></tr>';
-        if ($fila["estatus"]=='AP') {$contap++;}
-        if ($fila["estatus"]=='RE') {$contre++;}
-        if ($fila["estatus"]=='PE') {$contpe++;}
-        if ($fila["estatus"]=='GA') {$contga++;}
-        $pos++;
-    }
-    $salida=$salida.'<input type="hidden" id="contaph" name="contap" value="'.$contap.'">';
-    $salida=$salida.'<input type="hidden" id="contreh" name="contre" value="'.$contre.'">';
-    $salida=$salida.'<input type="hidden" id="contpeh" name="contpe" value="'.$contpe.'">';
-    $salida=$salida.'<input type="hidden" id="contgah" name="contga" value="'.$contga.'">';
-
-    /* liberar el conjunto de resultados */
-    mysqli_free_result($resultado);
-   }
-
-  Close($link);
-  return $salida;
-}
-
 /* Listado de premios de un registro */
 function list_premios($id){
   $reg      = 0;
@@ -331,7 +343,7 @@ function list_premios_email($id,&$tipo){
 
 
 /* Insert registro y envio de email */
-function insert_registro($sucnom,$monto,$nro,$fechastr,$nombre,$email,$telef,$cp ) {
+function insert_registro($sucnom,$monto,$nro,$fechastr,$nombre,$apaterno,$amaterno,$email,$telef,$cp ) {
   	$result 	  = 0;
   	$hoy 		    = date("Y-m-d H:i:s");
   	$hoydia 	  = date("Y-m-d");
@@ -372,11 +384,12 @@ function insert_registro($sucnom,$monto,$nro,$fechastr,$nombre,$email,$telef,$cp
      $suc = get_sucursal_id($sucnom); // Obtener el id de la sucursal a partir del nombre
 
 		 $query ="INSERT INTO coro_registros";
-		 $query .="(nombre, email, telefono, cp, idsuc_ticket, nro_ticket, monto_ticket, fecha_ticket, archivo_ticket, like_fb, observaciones, estatus, fecha_estatus, ip, huella_digital, pais, estado, usuario, fecha_insert, fecha_update)";
-		 $query .=" VALUES ('$nombre','$email','$telef','$cp',$suc,'$nro',$monto,'$fechahora',NULL,NULL,'','PE','$hoy','$ip',NULL,'$codpais','$country_region','usuariofinal','$hoy','$hoy')";
+		 $query .="(nombre,apellidopaterno, apellidomaterno, email, telefono, cp, idsuc_ticket, nro_ticket, monto_ticket, fecha_ticket, archivo_ticket, like_fb, observaciones, estatus, fecha_estatus, ip, huella_digital, pais, estado, usuario, fecha_insert, fecha_update)";
+		 $query .=" VALUES ('$nombre','$apaterno','$amaterno','$email','$telef','$cp',$suc,'$nro',$monto,'$fechahora',NULL,NULL,'','PE','$hoy','$ip',NULL,'$codpais','$country_region','usuariofinal','$hoy','$hoy')";
 
 		 if (mysqli_query($link, $query)) {
 		      $result=mysqli_insert_id($link);
+          mysqli_commit($link);
 		      log_write('Nuevo registro ok id '.$result);
 
           // envio de email
@@ -389,7 +402,6 @@ function insert_registro($sucnom,$monto,$nro,$fechastr,$nombre,$email,$telef,$cp
 		     $error=$query;
 		     log_write('Nuevo registro error query'.$error);
 		 }
-  	 mysqli_commit($link);
    	}
    	Close($link);
     log_write_sql($query);
@@ -502,6 +514,7 @@ function get_estatus_desc ($estatus) {
 /* Obtener detalle de un registro X */
 function get_registro($id, &$email,&$nombre,&$sucursal,&$nroticket,&$monto,&$fecha,&$emailregistro,&$archivo,&$estatus,&$observa,&$estatusdesc,&$pos) {
   	$result 	= 0;
+    $archivo = "sin_imagen.jpg";
 
   	$link=connect();
 
@@ -513,16 +526,16 @@ function get_registro($id, &$email,&$nombre,&$sucursal,&$nroticket,&$monto,&$fec
   			$result = 1;
   			$row     = mysqli_fetch_assoc($resultado);
 			  $email           =  $row["email"];
-			  $nombre          =  $row["nombre"];
+			  $nombre          =  $row["nombre"].' '.$row["apellidopaterno"].' '.$row["apellidomaterno"];
 			  $nroticket       =  $row["nro_ticket"];
 			  $monto 		       =  $row["monto_ticket"];
         $fecha           =  date('d/m/Y H:i',strtotime($row["fecha_ticket"]));
 			  $sucursal        =  $row["sucursal"];
 			  $emailregistro	 =  $row["email_registro"];
-        $archivo	       =  $row["archivo_ticket"];
         $estatus	       =  $row["estatus"];
         $observa         =  $row["observaciones"];
         $pos             =  $row["posicion"];
+        if ($row["archivo_ticket"]!='') { $archivo=$row["archivo_ticket"];}
         $estatusdesc     = get_estatus_desc($estatus);
   			$accion          = 'Get registro id: '.$id;
 	      log_write($accion);

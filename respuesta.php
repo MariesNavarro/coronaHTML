@@ -14,10 +14,12 @@
 		    $nro   	= $_POST['nro'];
 		    $fecha  = $_POST['fec'];
 		    $nombre = $_POST['nom'];
+        $apaterno = $_POST['apa'];
+        $amaterno = $_POST['ama'];
 		    $email  = $_POST['ema'];
 		    $telef  = $_POST['tel'];
 		    $cp  	  = $_POST['cp'];
-	      echo insert_registro($suc,$monto,$nro,$fecha,$nombre,$email,$telef,$cp);
+	      echo insert_registro($suc,$monto,$nro,$fecha,$nombre,$apaterno,$amaterno,$email,$telef,$cp);
 		    break;
     case 2:  /* get ganadores dia x */
         $fecha  = $_POST['fec'];

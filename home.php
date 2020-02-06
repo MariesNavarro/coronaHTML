@@ -30,7 +30,11 @@
             <th>#</th>
             <th>Nombre</th>
             <th>ID</th>
+						<th>Sucursal</th>
             <th>Monto</th>
+						<th>Fecha/Hora Ticket</th>
+						<th>Fecha/Hora Registro</th>
+						<th>Ticket</th>
             <th>Estatus</th>
             <th>Ver Ticket</th>
           </tr>

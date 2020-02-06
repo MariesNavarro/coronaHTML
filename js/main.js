@@ -15,10 +15,10 @@ function popFoot(c){
 }
 
 /******** regsitrar Ticket *******/
-function registrar(sucursal, monto, nro, fecha,nombre, email,telef, cp) {
+function registrar(sucursal, monto, nro, fecha,nombre, apellidopaterno, apellidomaterno, email,telef, cp) {
 	    /*var huellalogin=huella();*/
 			//loading("show");
-		  var dataString ='&acc=1&suc='+sucursal+'&mon='+monto+'&nro='+nro+'&fec='+fecha+'&nom='+nombre+'&ema='+email+'&tel='+telef + '&cp='+cp;
+		  var dataString ='&acc=1&suc='+sucursal+'&mon='+monto+'&nro='+nro+'&fec='+fecha+'&nom='+nombre+'&apa='+apellidopaterno+'&ama='+apellidomaterno+'&ema='+email+'&tel='+telef + '&cp='+cp;
 		  console.log('registrar:'+dataString);
 		  $.ajax({
 		         type   : 'POST',

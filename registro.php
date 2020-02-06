@@ -62,13 +62,13 @@
 			<div class="qstWr">
 				<label for="nombre">Tu Apellido paterno</label>
 				<input type="text" name="apellidopaterno" id="apellidopaterno" placeholder="Ingresa Apellido paterno" required>
-				<p class="alerta" id="msgapellidopaterno"></p>
+				<p class="alerta" id="msgApellidopaterno"></p>
 			</div>
 			<!-- Apellidos -->
 			<div class="qstWr">
 				<label for="nombre">Tu Apellido materno</label>
 				<input type="text" name="apellidomaterno" id="apellidomaterno" placeholder="Ingresa Apellido materno" required>
-				<p class="alerta" id="msgapellidomaterno"></p>
+				<p class="alerta" id="msgApellidomaterno"></p>
 			</div>
 			<!-- Teléfono -->
 			<div class="qstWr">
@@ -133,28 +133,33 @@
 </section>
 
 <script>
-	$(document).ready(function(){
+	$(document).ready(function(event){
+		  event.preventDefault();
 	  	console.log('ready');
 			$('body').addClass('bodyRegistro');
 
 	    $('#btnEnviar').on('click', function (e) {
-	      var sucursal 	= $("#selectSucursal").val();
-	      var monto 		= $("#monto").val();
-	      var nro 			= $("#nro").val();
-	      var fecha 		= $("#fecha").val();
-				var hora 		  = $("#hora").val();
-		   	var nombre 		= $("#nombre").val();
-		   	var email 		= $("#email").val();
-		   	var telef 		= $("#telef").val();
-		   	var cp 				= $("#cp").val();
-		   	var validOk   = true;
-		   	var msgError  = "";
+	      var sucursal 				= $("#selectSucursal").val();
+	      var monto 					= $("#monto").val();
+	      var nro 						= $("#nro").val();
+	      var fecha 					= $("#fecha").val();
+				var hora 		  			= $("#hora").val();
+		   	var nombre 					= $("#nombre").val();
+				var apellidopaterno = $("#apellidopaterno").val();
+				var apellidomaterno = $("#apellidomaterno").val();
+		   	var email 					= $("#email").val();
+		   	var telef 					= $("#telef").val();
+		   	var cp 							= $("#cp").val();
+		   	var validOk   			= true;
+		   	var msgError  			= "";
 
 				$('#msgSucursal').text(msgError);
 				$('#msgMonto').text(msgError);
 				$('#msgNro').text(msgError);
 				$('#msgFecha').text(msgError);
 				$('#msgNombre').text(msgError);
+				$('#msgApellidopaterno').text(msgError);
+				$('#msgApellidomaterno').text(msgError);
 				$('#msgEmail').text(msgError);
 				$('#msgTelef').text(msgError);
 				$('#msgCP').text(msgError);
@@ -165,9 +170,12 @@
 		   if (sucursal=="") {	msgError = "Debe especificar una sucursal"; $('#msgSucursal').text(msgError); validOk = false; }
 		   if (monto=="" || monto<1900  ) { 	msgError = "Debe ingresar un monto válido del ticket (mayor o igual a $1900)";	$('#msgMonto').text(msgError); validOk = false; }
 	  	 if (nro=="") { 	msgError = "Debes ingresar el Nro. del ticket";	$('#msgNro').text(msgError); validOk = false; }
+			 if (nro.length > 25) { 	msgError = "Debes ingresar un Nro. del ticket menor a 25 dígitos";	$('#msgNro').text(msgError); validOk = false; }
 	  	 if (fecha=="")  { msgError = "Debes ingresar la fecha del ticket o factura"; $('#msgFecha').text(msgError); validOk = false;  }
 			 if (hora=="")  { msgError = "Debes ingresar la hora del ticket o factura"; $('#msgFecha').text(msgError); validOk = false;  }
 	  	 if (nombre=="")  { msgError = "Debes ingresar tu nombre"; $('#msgNombre').text(msgError);validOk = false; }
+			 if (apellidopaterno=="")  { msgError = "Debes ingresar tu apellido paterno"; $('#msgApellidopaterno').text(msgError);validOk = false; }
+			 if (apellidomaterno=="")  { msgError = "Debes ingresar tu apellido materno"; $('#msgApellidomaterno').text(msgError);validOk = false; }
 	  	 if (email=="")  { msgError = "Debes ingresar tu correo"; $('#msgEmail').text(msgError);validOk = false; }
 		   if (!emailIsValid (email) ) { msgError = "Debes proporcionar un correo válido"; $('#msgEmail').text(msgError);validOk = false; }
 			 if (telef=="")  { msgError = "Debes ingresar tu teléfono"; $('#msgTelef').text(msgError);validOk = false; }
@@ -177,7 +185,7 @@
 	  	 if (!$('#terminos').prop('checked') ) { msgError = "Debes seleccionar acepto término y condiciones"; $('#msgTerminos').text(msgError); validOk = false;  }
 		   console.log(validOk+' '+msgError);
 
-		   if (validOk) {	registrar(sucursal,monto,nro,fecha+' '+hora,nombre,email,telef,cp); }
+		   if (validOk) {	registrar(sucursal,monto,nro,fecha+' '+hora,nombre,apellidopaterno,apellidomaterno,email,telef,cp); }
 
 	    });
 	});

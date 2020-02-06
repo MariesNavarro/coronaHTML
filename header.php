@@ -57,7 +57,7 @@
   <body>
     <section id="loading" class="displayNone trans5">
       <img src="img/coronaw-logotipo.svg" alt="Logotipo Blanco Corona México" width="160">
-      <p>Espere...</p>
+      <p>Espere, por favor no actualice esta página.</p>
       <svg width="160" height="30">
       <rect id="square25" y="50%" width="70" height="4" style="fill:white" />
       </svg>

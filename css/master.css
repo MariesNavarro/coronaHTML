@@ -303,7 +303,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 .alerta{  /*.qstWr>*/
   overflow: hidden;
   line-height: 20px;
-  margin: 5px 0;
+  margin: 1px 0; /* 5px CG */
   color: #c42b53;
 }
 
@@ -380,7 +380,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #form{
   position: relative;
   width: 100vw;
-  height: 640px;
+  height:  810px;  /*640px; CG*/
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -488,6 +488,37 @@ footer.footMsj>p>a:hover{ color: #808080 }
 }
 .checkSend:checked{ background: #008cee; }
 /* GANADORES */
+.position {
+  width: 50px;
+  vertical-align: middle;
+}
+.name {
+  vertical-align: middle;
+}
+.id {
+  width: 120px;
+  vertical-align: middle;
+}
+.total {
+  width: 150px;
+  vertical-align: middle;
+}
+.fecha {
+  width: 130px;
+  vertical-align: middle;
+}
+.ticket {
+  width: 120px;
+  vertical-align: middle;
+}
+.status {
+ width: 200px;
+ vertical-align: middle;
+}
+.action {
+  width: 80px;
+  vertical-align: middle;
+}
 #ganadores{
   margin-top: -110px;
   width: 100vw;
@@ -525,6 +556,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
   padding: 3px;
   font-size: 0.8rem;
   text-align: center;
+  text-align-last:center;
 }
 #ganadores>#interface>a{
   display: block;
@@ -762,10 +794,11 @@ footer.footMsj>p>a:hover{ color: #808080 }
 }
 #tabla>select{
   margin: 10px auto 20px auto;
-  width: 300px;
+  width: 180px;
   height: 30px;
   background: #fff;
   color: #0078cd;
+  text-align-last: center;
 }
 #tabla>table{
   width: calc(100% - 30px);
@@ -784,7 +817,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 #tabla>table>tbody>tr>td{
   text-align: center;
   line-height: 1;
-  padding: 10px;
+  padding: 8px;  /*10px; CG */
   border: 1px solid #c6c6c6;
 }
 .status{ font-family: 'BrandonBlack'; }
@@ -792,6 +825,7 @@ footer.footMsj>p>a:hover{ color: #808080 }
 .pendiente{ color: #0000FF /*#ebbc56*/  }
 .rechazado{ color: #c42b53 }
 .ganador{ color: #FF8C00 }
+.rechazadoobserva{ color: #778899; font-size: smaller;}
 .action>a{
   margin: 0 auto;
   cursor: pointer;
