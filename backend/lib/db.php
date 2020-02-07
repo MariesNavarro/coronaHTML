@@ -74,6 +74,7 @@ function list_registros_dias($fecha){
   $link     = connect();
   $consulta ="SELECT distinct DATE_FORMAT(fecha_ticket, '%d/%m/%Y') fecha
               FROM coro_registros
+            WHERE estatus != 'EL'  /* no eliminado */
           ORDER BY DATE_FORMAT(fecha_ticket, '%d/%m/%Y') desc";
 
   if ($resultado = mysqli_query($link, $consulta)) {
@@ -110,6 +111,7 @@ function list_registros($fecha){
               FROM coro_registros a
               LEFT JOIN coro_sucursales b ON a.idsuc_ticket = b.id
              WHERE DATE_FORMAT(a.fecha_ticket, '%d/%m/%Y') = '".$fecha."'
+               AND estatus != 'EL'  /* no eliminado */
           ORDER BY a.monto_ticket desc, a.fecha_insert asc";
 
   if ($resultado = mysqli_query($link, $consulta)) {
@@ -211,7 +213,7 @@ function cont_registros(&$registros,&$ganadores,&$rechezados)
   $link     = connect();
 
   /* registros */
-  $consulta = "SELECT count('x') cont FROM coro_registros";
+  $consulta = "SELECT count('x') cont FROM coro_registros WHERE estatus != 'EL'  /* no eliminado */";
   if ($resultado = mysqli_query($link, $consulta)) {
     while ($fila = mysqli_fetch_assoc($resultado)) {
          $registros=$fila["cont"];
@@ -465,6 +467,27 @@ function update_registro_emailganador($id) {
      	 log_write('Update registro emailganador error id '.$id.' query: '.$error);
    	} else {
    		 log_write('Update registro ok emailganador id '.$id);
+   	}
+   	mysqli_commit($link);
+    log_write_sql($query);
+   	Close($link);
+  }
+}
+
+/* delete registro  */
+function delete_registro($id) {
+  $link=connect();
+
+  if ($id > 0 ) {
+  	$query ="UPDATE coro_registros";
+  	$query .=" SET estatus = 'EL'";
+  	$query .=" WHERE id = $id";
+
+  	if (!mysqli_query($link, $query)) {
+     	 $error=$query;
+     	 log_write('Delete registro estatus error id '.$id.' query: '.$error);
+   	} else {
+   		 log_write('Delete registro estatus ok id '.$id);
    	}
    	mysqli_commit($link);
     log_write_sql($query);

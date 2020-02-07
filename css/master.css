@@ -519,6 +519,9 @@ footer.footMsj>p>a:hover{ color: #808080 }
   width: 80px;
   vertical-align: middle;
 }
+.lbl_registros {
+  vertical-align: middle;
+}
 #ganadores{
   margin-top: -110px;
   width: 100vw;

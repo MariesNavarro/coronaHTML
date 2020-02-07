@@ -26,8 +26,14 @@
 				default:	$msg  = "Gracias <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pronto te llegará una confirmación al correo que registraste. Recuerda revisar tu carpeta de correos no deseados (spam)";
 			}
 	} else {
-		  $ms  = 1;
-			$msg  = "Gracias  <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pronto te llegará una confirmación al correo que registraste. Recuerda revisar tu carpeta de correos no deseados (spam)";
+		  if ($archivo!="") {
+		  	$ms  = 1;
+				$msg  = "Gracias  <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pronto te llegará una confirmación al correo que registraste. Recuerda revisar tu carpeta de correos no deseados (spam)";
+			} else {
+				// No se llego a subir el archivo correctamente, hay que eliminar el registro
+				delete_registro($id);
+				$msg = "Lo sentimos <b>algo falló</b> y tu ticket no fue enviado correctamente.";
+			}
 	}
 //	echo $ms.' '.$msg;
 ?>

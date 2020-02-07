@@ -27,16 +27,16 @@
       <table>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>ID</th>
-						<th>Sucursal</th>
-            <th>Monto</th>
-						<th>Fecha/Hora Ticket</th>
-						<th>Fecha/Hora Registro</th>
-						<th>Ticket</th>
-            <th>Estatus</th>
-            <th>Ver Ticket</th>
+            <th class="lbl_registros">#</th>
+            <th class="lbl_registros">Nombre</th>
+            <th class="lbl_registros">ID</th>
+						<th class="lbl_registros" >Sucursal</th>
+            <th class="lbl_registros">Monto</th>
+						<th class="lbl_registros">Fecha/Hora<br>Ticket</th>
+						<th class="lbl_registros">Fecha/Hora<br>Registro</th>
+						<th class="lbl_registros">Ticket</th>
+            <th class="lbl_registros">Estatus</th>
+            <th class="lbl_registros">Ver Ticket</th>
           </tr>
         </thead>
         <tbody id="lstRegistrosdia">

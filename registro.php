@@ -133,12 +133,14 @@
 </section>
 
 <script>
-	$(document).ready(function(event){
-		  event.preventDefault();
+	$(document).ready(function(){
+
 	  	console.log('ready');
 			$('body').addClass('bodyRegistro');
 
 	    $('#btnEnviar').on('click', function (e) {
+				e.preventDefault();
+
 	      var sucursal 				= $("#selectSucursal").val();
 	      var monto 					= $("#monto").val();
 	      var nro 						= $("#nro").val();
@@ -166,6 +168,7 @@
 				$('#msgFile').text(msgError);
 				$('#msgTerminos').text(msgError);
 
+
 		   // Validaciones
 		   if (sucursal=="") {	msgError = "Debe especificar una sucursal"; $('#msgSucursal').text(msgError); validOk = false; }
 		   if (monto=="" || monto<1900  ) { 	msgError = "Debe ingresar un monto válido del ticket (mayor o igual a $1900)";	$('#msgMonto').text(msgError); validOk = false; }
@@ -185,7 +188,13 @@
 	  	 if (!$('#terminos').prop('checked') ) { msgError = "Debes seleccionar acepto término y condiciones"; $('#msgTerminos').text(msgError); validOk = false;  }
 		   console.log(validOk+' '+msgError);
 
-		   if (validOk) {	registrar(sucursal,monto,nro,fecha+' '+hora,nombre,apellidopaterno,apellidomaterno,email,telef,cp); }
+		   if (validOk) {
+				 $("#btnEnviar").addClass("btnDesactivado");
+				 $('#btnEnviar').off('click');
+				 registrar(sucursal,monto,nro,fecha+' '+hora,nombre,apellidopaterno,apellidomaterno,email,telef,cp);
+			 }
+
+			// $("#btnEnviar").attr('href', '');
 
 	    });
 	});
