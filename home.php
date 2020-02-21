@@ -82,19 +82,20 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 	  	console.log('ready');
-			/*
+
  			var cinepolis = "<?php echo $cinepolis ?>";
-			var spotify 	= "<?php echo $spotify ?>";
 			var netflix 	= "<?php echo $netflix ?>";
-			*/
+			var spotify 	= "<?php echo $spotify ?>";
+
+			console.log('Premios disponibles: cinepolis='+cinepolis+' netflix='+' '+netflix+' spotify='+spotify)
 
 			var fecha 	= $("#selectRegistrosdia").val();
 			$('#btnEnviar').css('display', 'none');
-			if (fecha != '0'){ get_registros(fecha);	} else { $("#lstRegistrosdia").empty();}
+			if (fecha != '0'){ get_registros(fecha,cinepolis,netflix,spotify);	} else { $("#lstRegistrosdia").empty();}
 
 	    $('#selectRegistrosdia').on('change', function (e) {
 				  var fecha 	= $("#selectRegistrosdia").val();
-					if (fecha != '0'){ get_registros(fecha);	} else { $("#lstRegistrosdia").empty();}
+					if (fecha != '0'){ get_registros(fecha,cinepolis,netflix,spotify);	} else { $("#lstRegistrosdia").empty();}
 	    });
 
 			$('#btnEnviar').on('click', function (e) {
@@ -129,7 +130,7 @@
 		showPopEnviados('hide');
 		var fecha 	= $("#selectRegistrosdia").val();
 		$('#btnEnviar').css('display', 'none');
-		if (fecha != '0'){ get_registros(fecha);	} else { $("#lstRegistrosdia").empty();}
+		if (fecha != '0'){ get_registros(fecha,cinepolis,netflix,spotify);	} else { $("#lstRegistrosdia").empty();}
 	}
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>

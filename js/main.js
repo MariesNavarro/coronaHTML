@@ -75,11 +75,7 @@ function sendfile(id,nro){
 	        data: form_data,
 	        success: function (response) {
 	          	console.log('sendfile: '+response);
-          		if ( response > 0 ) {
-            	  window.location.href = "mensaje.php?id="+id+"&ms="+response;
-            	} else {
-            	 	window.location.href = "mensaje.php?ms=0";
-            	}
+          	  window.location.href = "mensaje.php?id="+id+"&ms="+response;
 	        },
 	        error: function (err) {
 	        	result = 0;
@@ -110,7 +106,7 @@ function get_ganadores(fecha) {
 }
 
 /******** get registros  *******/
-function get_registros(fecha) {
+function get_registros(fecha,cinepolis,netflix,spotify) {
 	    /*var huellalogin=huella();*/
 		  var dataString ='&acc=3&fec='+fecha;
 		  console.log('get_registros:'+dataString);
@@ -129,9 +125,15 @@ function get_registros(fecha) {
 								  $('#msg').text('Ya fueron enviados los ganadores de este día');
 								 	$('#btnEnviar').css('display', 'none');
 							 } else {
-								 if ($("#contaph").val()>=1) { // si ya hay aprobados  habilitar boton
-									  $('#msg').text('¿Quieres enviar los ganadores del día?');
-									 	$('#btnEnviar').css('display', 'block');
+								 if ($("#contaph").val()>=1) { // si ya hay aprobados  habilitar botón
+									  // Validar si hay premios disponibles
+										if (cinepolis > 1 && netflix > 0 && spotify > 1) {
+									  	$('#msg').text('¿Quieres enviar los ganadores del día?');
+									 		$('#btnEnviar').css('display', 'block');
+										} else {
+											$('#msg').text('No pudimos activar el botón de envio de ganadores, favor reportar este incidente.');
+								 	 		$('#btnEnviar').css('display', 'none');
+										}
 								} else {
 									  $('#msg').text('Debes tener al menos 1 ticket aprobado para poder enviar los ganadores');
 							 	 		$('#btnEnviar').css('display', 'none');
@@ -153,7 +155,8 @@ function enviar_ganadores(fecha) {
 				 data   :  dataString,
 				 success:function(data) {
 					 console.log(data);
-					 if (data == 1) {	 $("#msgAprobadosEnviados").text("Fue enviado " + data + " ganador del día "+ fecha); }
+					 if (data == 0) {	 $("#msgAprobadosEnviados").text("No fueron enviados los ganadores del día "+ fecha+ ' por no tener disponibilidad de premios'); }
+					 else if (data == 1) {	 $("#msgAprobadosEnviados").text("Fue enviado " + data + " ganador del día "+ fecha); }
 					 else  if (data > 1) {	 $("#msgAprobadosEnviados").text("Fueron enviados " + data + " ganadores del día "+ fecha); }
 					 loading("hide");
 					 showPopEnviados("show");

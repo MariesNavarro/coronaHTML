@@ -365,7 +365,7 @@ function insert_registro($sucnom,$monto,$nro,$fechastr,$nombre,$apaterno,$amater
   	$link=connect();
 
   	/* Verificar que el ticket no haya sido registrado */
-  	$query = "SELECT 'x' FROM coro_registros WHERE nro_ticket = '$nro'";
+  	$query = "SELECT 'x' FROM coro_registros WHERE nro_ticket = '$nro' AND estatus != 'EL' ";
 
   	if ($resultado = mysqli_query($link, $query)) {
   		if (mysqli_num_rows($resultado)>0) {
@@ -576,110 +576,119 @@ function enviar_ganadores($fecha) {
   $hoy 		    = date("Y-m-d H:i:s");
   $link       = connect();
   $usuario    = $_SESSION['user'];
+  $cinepolis  = 0;
+  $netflix    = 0;
+  $spotify    = 0;
 
-  // Query de ganadores, obtener los tres primeros del día en base a monto del ticket (mayores) y fecha insert (primeros)
-  $consulta ="SELECT id, nombre, nro_ticket, monto_ticket, estatus, email
-              FROM coro_registros
-             WHERE estatus = 'AP' AND DATE_FORMAT(fecha_ticket, '%d/%m/%Y') = '".$fecha."'
-          ORDER BY monto_ticket desc, fecha_insert asc
-             LIMIT 3";
+  cont_premiosdisponibles($cinepolis,$netflix,$spotify);
+  /* Validar que haya premios disponibles */
+  if ($cinepolis>1 && $netflix > 0 && $spotify > 1) {
+      // Query de ganadores, obtener los tres primeros del día en base a monto del ticket (mayores) y fecha insert (primeros)
+      $consulta ="SELECT id, nombre, nro_ticket, monto_ticket, estatus, email
+                  FROM coro_registros
+                 WHERE estatus = 'AP' AND DATE_FORMAT(fecha_ticket, '%d/%m/%Y') = '".$fecha."'
+              ORDER BY monto_ticket desc, fecha_insert asc
+                 LIMIT 3";
 
- //log_write($consulta);
+     //log_write($consulta);
 
-  if ($resultado = mysqli_query($link, $consulta)) {
-    while ($fila = mysqli_fetch_assoc($resultado)) {
+      if ($resultado = mysqli_query($link, $consulta)) {
+        while ($fila = mysqli_fetch_assoc($resultado)) {
 
-      $idregistro = $fila['id'];  // id del registro del ticket
-      $premios    = "";  // lista de id de premios
+          $idregistro = $fila['id'];  // id del registro del ticket
+          $premios    = "";  // lista de id de premios
 
-      // obtener los premios y asignarlos
-      switch ($pos) {
-       case 1:  /* ganador 1: dos boletos dobles para acudir al cine Cinépolis VIP. */
-           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'CINEPOLIS ' LIMIT 2";
-           break;
-       case 2:  /* ganador 2: 1 tarjetas de Netflix con crédito de $200.00 M.N. (Cien Pesos 00/100 Moneda Nacional), cada una. */
-           //$consulta = "SELECT id FROM (SELECT id  FROM admin_coronasani.coro_premios WHERE activo = 'S' AND estatus = 'PE'  AND tipo = 'CINE' AND Monto = 200 LIMIT 1) A";
-           //$consulta .= " UNION ";
-           //$consulta .= "SELECT id FROM (SELECT id FROM admin_coronasani.coro_premios WHERE activo = 'S' AND estatus = 'PE'  AND tipo = 'AMAZ' AND Monto = 100 LIMIT 1) B";
-           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'NETFLIX' LIMIT 1";
-           break;
-       case 3:  /* ganador 3: dos tarjetas de Spotify con crédito de $100.00 M.N. (Cien Pesos 00/100 Moneda Nacional), cada una.   */
-           $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'SPOTIFY' LIMIT 2";
-           break;
-       default:
-           $consulta ="";
-      }
-
-      //log_write($consulta);
-
-      if ($resultadoPremios = mysqli_query($link, $consulta)) {
-        while ($filaPremio = mysqli_fetch_assoc($resultadoPremios)) {
-          $idpremio = $filaPremio['id'];
-          $premios .= $idpremio.',';
-
-          /* Insert relacion premio / registro */
-          $query ="INSERT INTO coro_ganadores";
-          $query .="(id_registro, id_premio, usuario, fecha_insert)";
-          $query .=" VALUES ($idregistro,$idpremio,'$usuario','$hoy')";
-
-          if (mysqli_query($link, $query)) {
-               log_write('Nuevo ganador ok idregistro '.$idregistro.' idpremio '.$idpremio);          }
-          else {
-              $error=$query;
-              log_write('Nuevo ganador error query'.$error.' idregistro '.$idregistro.' idpremio '.$idpremio);
+          // obtener los premios y asignarlos
+          switch ($pos) {
+           case 1:  /* ganador 1: dos boletos dobles para acudir al cine Cinépolis VIP. */
+               $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'CINEPOLIS ' LIMIT 4";
+               break;
+           case 2:  /* ganador 2: 1 tarjetas de Netflix con crédito de $200.00 M.N. (Cien Pesos 00/100 Moneda Nacional), cada una. */
+               //$consulta = "SELECT id FROM (SELECT id  FROM admin_coronasani.coro_premios WHERE activo = 'S' AND estatus = 'PE'  AND tipo = 'CINE' AND Monto = 200 LIMIT 1) A";
+               //$consulta .= " UNION ";
+               //$consulta .= "SELECT id FROM (SELECT id FROM admin_coronasani.coro_premios WHERE activo = 'S' AND estatus = 'PE'  AND tipo = 'AMAZ' AND Monto = 100 LIMIT 1) B";
+               $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'NETFLIX' LIMIT 1";
+               break;
+           case 3:  /* ganador 3: dos tarjetas de Spotify con crédito de $100.00 M.N. (Cien Pesos 00/100 Moneda Nacional), cada una.   */
+               $consulta = "SELECT id FROM coro_premios WHERE activo = 'S' AND estatus = 'PE' AND tipo = 'SPOTIFY' LIMIT 2";
+               break;
+           default:
+               $consulta ="";
           }
-          log_write_sql($query);
 
-          /* update premio entregado */
-          $query ="UPDATE coro_premios";
-        	$query .=" SET estatus = 'EN', fecha_estatus = '$hoy', usuario= '$usuario'";
-        	$query .=" WHERE id = ".$idpremio;
-          //log_write($query);
-          if (!mysqli_query($link, $query)) {
-             $error=$query;
-             log_write('Premio asignado error id '.$idpremio.' query: '.$error);
-          }  else {
-             log_write('Premio asignado ok id '.$idpremio);
+          //log_write($consulta);
+
+          if ($resultadoPremios = mysqli_query($link, $consulta)) {
+            while ($filaPremio = mysqli_fetch_assoc($resultadoPremios)) {
+              $idpremio = $filaPremio['id'];
+              $premios .= $idpremio.',';
+
+              /* Insert relacion premio / registro */
+              $query ="INSERT INTO coro_ganadores";
+              $query .="(id_registro, id_premio, usuario, fecha_insert)";
+              $query .=" VALUES ($idregistro,$idpremio,'$usuario','$hoy')";
+
+              if (mysqli_query($link, $query)) {
+                   log_write('Nuevo ganador ok idregistro '.$idregistro.' idpremio '.$idpremio);          }
+              else {
+                  $error=$query;
+                  log_write('Nuevo ganador error query'.$error.' idregistro '.$idregistro.' idpremio '.$idpremio);
+              }
+              log_write_sql($query);
+
+              /* update premio entregado */
+              $query ="UPDATE coro_premios";
+            	$query .=" SET estatus = 'EN', fecha_estatus = '$hoy', usuario= '$usuario'";
+            	$query .=" WHERE id = ".$idpremio;
+              //log_write($query);
+              if (!mysqli_query($link, $query)) {
+                 $error=$query;
+                 log_write('Premio asignado error id '.$idpremio.' query: '.$error);
+              }  else {
+                 log_write('Premio asignado ok id '.$idpremio);
+              }
+              mysqli_commit($link);
+              $premiook = true;
+              log_write_sql($query);
+            }
+          } else {
+               log_write('Premios no disponibles '.$idregistro.' '.$pos);
+               $premiook = false;
           }
-          mysqli_commit($link);
-          $premiook = true;
-          log_write_sql($query);
-        }
-      } else {
-           log_write('Premios no disponibles '.$idregistro.' '.$pos);
-           $premiook = false;
-      }
 
-      if ($premiook) {
-        // cambiar de estatus a ganador
-        $query ="UPDATE coro_registros";
-      	$query .=" SET estatus = 'GA', fecha_estatus = '$hoy', posicion = $pos, usuario= '$usuario'";
-      	$query .=" WHERE id = ".$idregistro;
-        if (!mysqli_query($link, $query)) {
-           $error=$query;
-           log_write('Ganador error id '.$idregistro.' '.$estatus.'  query: '.$error);
-        }  else {
-           log_write('Ganador ok id '.$idregistro.' '.$estatus);
-           $ganacont++;
-        }
-        mysqli_commit($link);
-        log_write_sql($query);
+          if ($premiook) {
+            // cambiar de estatus a ganador
+            $query ="UPDATE coro_registros";
+          	$query .=" SET estatus = 'GA', fecha_estatus = '$hoy', posicion = $pos, usuario= '$usuario'";
+          	$query .=" WHERE id = ".$idregistro;
+            if (!mysqli_query($link, $query)) {
+               $error=$query;
+               log_write('Ganador error id '.$idregistro.' '.$estatus.'  query: '.$error);
+            }  else {
+               log_write('Ganador ok id '.$idregistro.' '.$estatus);
+               $ganacont++;
+            }
+            mysqli_commit($link);
+            log_write_sql($query);
 
-        // enviar email
-        $email      = $fila['email'];
-        $nombre     = $fila['nombre'];
-        $nro_ticket = $fila['nro_ticket'];
-        log_write('Envio de premios por email: '.$email.'  id registro:'.$idregistro.' id premios:'.$premios);
-        send_email_ganador($idregistro,$email,$nombre,$nro_ticket);
-      }
-      $pos++;
-    } // while ganadores
-    /* liberar el conjunto de resultados */
-    mysqli_free_result($resultado);
-   }
+            // enviar email
+            $email      = $fila['email'];
+            $nombre     = $fila['nombre'];
+            $nro_ticket = $fila['nro_ticket'];
+            log_write('Envio de premios por email: '.$email.'  id registro:'.$idregistro.' id premios:'.$premios);
+            send_email_ganador($idregistro,$email,$nombre,$nro_ticket);
+          }
+          $pos++;
+        } // while ganadores
+        /* liberar el conjunto de resultados */
+        mysqli_free_result($resultado);
+       }
 
-  mysqli_commit($link);
-  Close($link);
+      mysqli_commit($link);
+      Close($link);
+  } else {
+    log_write('Premios no disponibles: cinepolis='.$cinepolis.' netflix='.$netflix.' spotify=',$spotify);
+  }
   return $ganacont;  // retornar la cantidad de ganadores
 }
 

@@ -42,11 +42,11 @@
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
         $result = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
+        $uploadOk = -4;
     }
 
     // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk != 0) {
+    if ($uploadOk > 0) {
         if (move_uploaded_file($source_file, $target_file_id)) {
             $result = "The file '". basename( $_FILES["file"]["name"]). "' has been uploaded.";
             update_registro_file($id,$name_file_id);

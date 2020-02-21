@@ -23,18 +23,19 @@
 				case -1:  /* ticket ya existe */	$msg = "Este ticket ya fue registrado. Lo sentimos los tickets sólo pueden ser registrados una vez.";	break;
 				case -2:  /* fecha no coincide con la de hoy */	$msg = "La fecha del ticket debe coincidir con la fecha de hoy.";	break;
 				case -3: /* error al subir el archivo */ $msg  = "Gracias <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pero hubo un problema al subir la imagen, favor enviarla al email contato@ganaenlaferiacorona.com"; break;
+				case -4:  /* error */
+					$msg = "Lo sentimos <b>algo falló subiendo el archivo</b> y tu ticket no fue enviado correctamente, por favor vuelva a intentarlo.";
+					break;
 				default:	$msg  = "Gracias <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pronto te llegará una confirmación al correo que registraste. Recuerda revisar tu carpeta de correos no deseados (spam)";
 			}
-	} else {
-		  if ($archivo!="") {
-		  	$ms  = 1;
-				$msg  = "Gracias  <b>".$nombre."</b>, tu <b>ticket fue enviado</b>, pronto te llegará una confirmación al correo que registraste. Recuerda revisar tu carpeta de correos no deseados (spam)";
-			} else {
-				// No se llego a subir el archivo correctamente, hay que eliminar el registro
-				delete_registro($id);
-				$msg = "Lo sentimos <b>algo falló</b> y tu ticket no fue enviado correctamente.";
-			}
 	}
+
+  if ($archivo=="" || $archivo==null ||  $archivo=="sin_imagen.jpg") {
+		// No se llego a subir el archivo correctamente, hay que eliminar el registro logicamente
+		delete_registro($id);
+		$msg = "Lo sentimos <b>algo falló</b> y tu ticket no fue enviado correctamente, por favor vuelva a intentarlo.";
+	}
+
 //	echo $ms.' '.$msg;
 ?>
 
@@ -67,8 +68,9 @@
 		var msg = "<?php echo $msg ?>";
 		var ms = "<?php echo $ms ?>";
 		var emailregistro = "<?php echo $emailregistro ?>";
+		var msint = parseInt(ms, 10);
 
-		if (emailregistro=='N') {  // Mandar email con el registro, solo la primera vez
+		if (emailregistro=='N' && msint > 0 ) {  // Mandar email con el registro, solo la primera vez
 			var id 		= '<?php echo $id; ?>';
 			var email = '<?php echo $email; ?>';
 			var nombre = '<?php echo $nombre; ?>';
