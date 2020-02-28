@@ -8,7 +8,7 @@
       <div class="color trans5"></div>
       <p>Registra</p>
     </a> -->
-    <p style="line-height:1.2; font-size:1.6rem; color:#fff; margin-top: -20px;">CORONA AGRADECE <br> A  TODOS LOS <br>  PARTICIPANTES</p>
+    <p style="line-height:1.2; font-size:1.6rem; color:#fff; margin-top: -20px;">GRACIAS <br> A  TODOS LOS <br>  PARTICIPANTES</p>
   </div>
 </section>
 
